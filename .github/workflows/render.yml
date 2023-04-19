@@ -1,4 +1,4 @@
-name: Merge & Render PDF
+name: Rerender PDFs
 
 on:
   push:
@@ -9,12 +9,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  render_pdf:
+  render_summary:
     runs-on: ubuntu-latest
 
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+
+      - run: sudo apt-get update
 
       - name: install svg to png
         run: sudo apt-get install librsvg2-bin
@@ -41,23 +43,34 @@ jobs:
           name: modsim_SS23_IN2010_merge.pdf
           path: docs/modsim_SS23_IN2010_merge.pdf
 
-  push_merged_pdf:
+  push_merged_pdfs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: render_pdf
+    needs: [render_summary]
+
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@master
 
-      - name: delete old modsim_SS23_IN2010_merge if exists
-        run: rm -f docs/modsim_SS23_IN2010_merge.pdf
+      - name: delete old pdfs if exists
+        run: rm -f docs/*.pdf
 
       - uses: actions/download-artifact@master
         with:
           name: modsim_SS23_IN2010_merge.pdf
           path: docs
 
-      - name: Push pdf to repo
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/*.pdf -f
+          git commit -m "Update PDFs"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          commit_message: Rerendered PDF
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master

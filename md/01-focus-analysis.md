@@ -104,7 +104,7 @@ $$
 
 The Jacobian matrix of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ at a point $a \in \mathbb{R}^n$ is the matrix of all partial derivatives of $f$ at $a$.
 
-In contrast to the Hessian matrix and the gradient the Jacobian matrix works for vector fields.
+In contrast to the Gradient the Jacobian matrix works for vector fields. It gives an analogue to the gradient for vector fields.
 
 $$
 D f(a)=J_f(a) = \begin{pmatrix} \frac{\partial f_1}{\partial x_1}(a) & \frac{\partial f_1}{\partial x_2}(a) & \ldots & \frac{\partial f_1}{\partial x_n}(a) \\ \frac{\partial f_2}{\partial x_1}(a) & \frac{\partial f_2}{\partial x_2}(a) & \ldots & \frac{\partial f_2}{\partial x_n}(a) \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1}(a) & \frac{\partial f_m}{\partial x_2}(a) & \ldots & \frac{\partial f_m}{\partial x_n}(a) \end{pmatrix}
@@ -158,5 +158,35 @@ $$
 
 Example:
 $$
-f(x, y) = \begin{pmatrix} x^2 y \\ y^2 x \\ yz \end{pmatrix} \rightarrow \text{rot} f(a) = \begin{pmatrix}z \\ 0 \\ y^2-x^2 \end{pmatrix}
+f(x, y, z) = \begin{pmatrix} x^2 y \\ y^2 x \\ yz \end{pmatrix} \rightarrow \text{rot} f(a) = \begin{pmatrix}z \\ 0 \\ y^2-x^2 \end{pmatrix}
 $$
+
+## Taylor Expansion
+
+It is also possible to approximate functions of multiple variables by Taylor expansions, by using the analog for higher order derivatives for functions of multiple variables.
+
+## Coordinate Transformations
+
+A bijection between two coordinate systems is called a coordinate transformation. It is a function $\phi: \mathbb{R}^n \rightarrow \mathbb{R}^m$ that maps points in one coordinate system to points in another coordinate system and vice versa.
+
+### Jacobian Matrix of a Coordinate Transformation
+
+The Jacobian matrix of this transformation is called *coordinate transformation matrix* and is defined as the matrix of all partial derivatives of the coordinate transformation.
+
+Its determinant is called the *Jacobian determinant*.
+
+Example:
+
+We define the Transformation $\phi$ from polar coordinates to cartesian coordinates as follows:
+
+$$
+\begin{aligned}
+&\qquad \phi(r,\phi) = \begin{pmatrix} r \cos \phi \\ r \sin \phi \end{pmatrix} := \begin{pmatrix} x\\ y \end{pmatrix}\\
+&\implies J_\phi(r,\phi) = \begin{pmatrix} \cos \phi & -r \sin \phi \\ \sin \phi & r \cos \phi \end{pmatrix}\\
+&\implies \text{det} J_\phi(r,\phi) = r
+\end{aligned}
+$$
+
+## Roots and Optima
+
+### Newton's Method

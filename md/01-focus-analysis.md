@@ -32,7 +32,7 @@ Given a domain $D \subseteq \mathbb{R}^n$ and its complement $D^c = \mathbb{R}^n
 - The set of all inner points of $D$ is called the *interior* of $D$ and is denoted as $\mathring{D}$.
 - The domain is called open if $D = \mathring{D}$
 - A point $x_0 \in \mathbb{R}^n$ is called *boundary point* if any arbitrarily small ball around this point intersects with both $D$ and its complement $D^c$
-- The set of all boundary points of $D$ is called the *boundary* of $D, denoted $\partial D$
+- The set of all boundary points of $D$ is called the *boundary* of $D$, denoted $\partial D$
 - The set $\bar{D} = D \cup0 \partial D$ is called the *closure* of $D$
 
 Using these definitions there are multiple attributes assignable to domains. \
@@ -68,7 +68,7 @@ $$
 \frac{\partial f}{\partial v}(a) = \lim_{h \to 0} \frac{f(a + h v) - f(a)}{h}
 $$
 
-we can define the gradient of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ along a vector $v \in \mathbb{R}^n$ at a point $a \in \mathbb{R}^n$.
+we can define the directional derivative of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ along a vector $v \in \mathbb{R}^n$ at a point $a \in \mathbb{R}^n$.
 
 If we use the coordinate vectors $e_i$ as basis vectors for $\mathbb{R}^n$ we can define the *Gradient* of $f$ at $a$ as
 
@@ -76,7 +76,7 @@ $$
 \nabla f(a) = \text{grad} f(a)= \begin{pmatrix} \frac{\partial f}{\partial x_1}(a) \\ \vdots \\ \frac{\partial f}{\partial x_n}(a) \end{pmatrix}
 $$
 
-For continuous functions the gradient along a vector $v$ can be computed as
+For continuous functions the directional derivative at the point $a$ along a vector $v$ can be computed as
 
 $$
 \frac{\partial f}{\partial v}(a) = \langle \nabla f(a), v \rangle
@@ -145,7 +145,7 @@ $$
 
 Example:
 $$
-f(x, y) = \begin{pmatrix} x^2 \\ y^2 \end{pmatrix} \rightarrow \text{div} f(a) = \frac{\partial f_1}{\partial x_1} + \frac{\partial f_2}{\partial x_2} = 2x + 2y
+f(x, y) = \begin{pmatrix} x^2 \\ y^2 \end{pmatrix} \rightarrow \text{div} f(a) = \frac{\partial f_1}{\partial x} + \frac{\partial f_2}{\partial y} = 2x + 2y
 $$
 
 ### Curl / Rotation

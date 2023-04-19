@@ -1,24 +1,29 @@
 ---
-title: Subject
-subtitle: "Subtitle"
+title: TUM ModSim, SoSe 2023
+subtitle: "Mitschriften basierend auf der Vorlesung von Dr. Hans-Joachim Bungartz"
 toc: true
 date: >-
   Zuletzt aktualisiert: \today
 keywords:
-  [keyword1, keyword2, keyword3]
+  [ModSim, Vorlesung, TUM, Informatik, Mitschrift Modellbildung und Simulation, IN2010, SoSe 2023]
 urlcolor: blue
 include-before: |
-  # Markdown-Script
-
+  # Introduction
   ## About
 
-  This is a template repository for creating a PDF document from markdown files. It uses [Pandoc](https://pandoc.org/) to convert the markdown files to a PDF document.
+   Hier sind die wichtigsten Konzepte der ModSim Vorlesung von Dr. Hans-Joachim Bungartz im Sommersemester 2023 zusammengefasst.
 
-  You can download the merged file at [merge.pdf](https://manuellerchner.github.io/markdown-script/merge.pdf)
+  Die Mitschriften selbst sind in Markdown geschrieben und werden mithilfe einer GitHub-Action nach jedem Push mithilfe von [Pandoc](https://pandoc.org/) zu einem PDF konvertiert.t
+
+  Eine stets aktuelle Version der PDFs kann über [modsim_SS23_IN2010_merge.pdf](https://manuellerchner.github.io/modsim/modsim_SS23_IN2010_merge.pdf) heruntergeladen werden.
+
+  ## Implementation
+
+  Außerdem befindet sich eine Implementation von verschiedenen Algorithmen im Ordner `/algorithms` auf [GitHub](https://github.com/ManuelLerchner/modsim). Diese sind in Python und unter der Verwendung von [NumPy](https://numpy.org/) geschrieben.
 
   ## How to Contribute
 
-  1. Fork [this](https://github.com/ManuelLerchner/markdown-skript) Repository
+  1. Fork this Repository
 
   2. Commit and push your changes to **your** forked repository
 
@@ -28,7 +33,8 @@ include-before: |
 
   ## Contributors
 
-  <a href="https://github.com/ManuelLerchner/markdown-script/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=ManuelLerchner/markdown-script" />
+  <a href="https://github.com/ManuelLerchner/modsim/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=ManuelLerchner/modsim" />
   </a>
+
 ---

@@ -1,13 +1,19 @@
-[![Merge & Render PDF](https://github.com/ManuelLerchner/markdown-script/actions/workflows/render.yml/badge.svg)](https://github.com/ManuelLerchner/subject/actions/workflows/render.yml)
-[![Deploy static content to Pages](https://github.com/ManuelLerchner/markdown-script/actions/workflows/static.yml/badge.svg)](https://github.com/ManuelLerchner/subject/actions/workflows/static.yml)
+[![Merge & Render PDF](https://github.com/ManuelLerchner/modsim/actions/workflows/render.yml/badge.svg)](https://github.com/ManuelLerchner/modsim/actions/workflows/render.yml)
+[![Deploy static content to Pages](https://github.com/ManuelLerchner/modsim/actions/workflows/static.yml/badge.svg)](https://github.com/ManuelLerchner/modsim/actions/workflows/static.yml)
 
-# Markdown-Script
+# ModSim SoSe 2023
 
 ## About
 
-This is a template repository for creating a PDF document from markdown files. It uses [Pandoc](https://pandoc.org/) to convert the markdown files to a PDF document.
+Hier sind die wichtigsten Konzepte der ModSim Vorlesung von Dr. Hans-Joachim Bungartz im Sommersemester 2023 zusammengefasst.
 
-You can download the merged file at [merge.pdf](https://manuellerchner.github.io/markdown-script/merge.pdf)
+Die Mitschriften selbst sind in Markdown geschrieben und werden mithilfe einer GitHub-Action nach jedem Push mithilfe von [Pandoc](https://pandoc.org/) zu einem PDF konvertiert.
+
+Eine stets aktuelle Version der PDFs kann über [modsim_SS23_IN2010_merge.pdf](https://manuellerchner.github.io/modsim/modsim_SS23_IN2010_merge.pdf) heruntergeladen werden.
+
+## Implementation
+
+Außerdem befindet sich eine Implementation von verschiedenen Algorithmen im Ordner `/algorithms` auf [GitHub](https://github.com/ManuelLerchner/modsim). Diese sind in Python und unter der Verwendung von [NumPy](https://numpy.org/) geschrieben.
 
 ## How to Contribute
 
@@ -21,6 +27,6 @@ You can download the merged file at [merge.pdf](https://manuellerchner.github.io
 
 ## Contributors
 
-<a href="https://github.com/ManuelLerchner/markdown-script/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ManuelLerchner/markdown-script" />
+<a href="https://github.com/ManuelLerchner/modsim/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ManuelLerchner/modsim" />
 </a>

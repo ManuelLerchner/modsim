@@ -190,3 +190,97 @@ $$
 ## Roots and Optima
 
 ### Newton's Method
+
+Newtons method in higher dimensions works similar to the one dimensional case. The only difference is that we have to compute the gradient and the Hessian matrix instead of the derivative.
+
+#### 1D Newton's Method
+
+$$
+x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+$$
+
+#### Higher Dimensional Newton's Method
+
+$$
+\bf{x}_{n+1} = \bf{x}_n - \left( J_f(\bf{x}_n) \right)^{-1} \cdot f(\bf{x}_n)
+$$
+
+It konverges quadratically to a root in the neighborhood of the initial guess.
+
+### Optima
+
+If $f$ is a scalar field and $\bf{x_0}$ is a point in the domain of $f$:
+
+- $\bf{x_0}$ is a global maximum if $f(\bf{x_0}) \geq f(\bf{x})$ for all $\bf{x} \in D$.
+- $\bf{x_0}$ is a global minimum if $f(\bf{x_0}) \leq f(\bf{x})$ for all $\bf{x} \in D$.
+- $\bf{x_0}$ is a local maximum if $f(\bf{x_0}) \geq f(\bf{x})$ for all $\bf{x} \in B_\epsilon(\bf{x_0})$.
+- $\bf{x_0}$ is a local minimum if $f(\bf{x_0}) \leq f(\bf{x})$ for all $\bf{x} \in B_\epsilon(\bf{x_0})$.
+
+All local extrema can be found from critical-points ($\nabla f(\bf{x})=0$) or at the boundary points.
+
+But analog to the one-dimensional case, its also possible that a critical-point is neither a minum or a maximum point, because it is a "Saddle-Point"
+
+### Criteria
+
+A critical Point $\bf{x_0}\in D$ is:
+
+- A local maximum if $H_f(\bf{x_0})$ is negative definite
+- A local minum if $H_f(\bf{x_0})$ is positive definite
+- A saddle point if $H_f(\bf{x_0})$ is indefiite
+
+## Curves and Surfaces
+
+## Curve
+
+A curve is a mapping $\gamma : I\subseteq \mathbb{R} \to \mathbb{R}^n$. In other words it maps a line into higher dimensional space.
+
+Example:
+
+$$
+\gamma(t)=\begin{pmatrix} \cos(2t)\\ \sin(t) \end{pmatrix}
+$$
+
+## Surface
+
+A surface is a mapping $\gamma : I\subseteq \mathbb{R}^2 \to \mathbb{R}^n$. In other words it maps a 2d-surface into higher dimensional space.
+
+## Quadrature
+
+### Integral over rectangular domains
+
+If $f: [a,b] \times [c,d] \to \mathbb{R}$ is a scalar field, the "sum" of scalar values along the area of the Domain can be computed as:
+
+$$
+\int\int_D f(x,y) dx dy = \int_a^d \int_c^d f(x,y) dx dy
+$$
+
+### Integration over simple domains
+
+A 2d-standard Domain is defined as $D= \{ (x,y) | x\in [a,b] , l(x) \leq y \leq u(x) \}$. This means such a domain has one-varing paramater, which determines the lower- and upper bound of the surface at that point.
+
+We can integrate over such domains using:
+
+$$
+\int\int_D f(x,y) dx dy = \int_{x=a}^b \int_{l(x)}^{u(x)} f(x,y) dx dy
+$$
+
+### Integration under coordinate transformations
+
+If $B,D \subseteq \mathbb{R}^n$ are Domains and $\phi: B\to D$ is a transformation between these domains. The Domain-Integral can be rewritten as:
+
+$$
+\int_D f(x_1,\dots, x_n) dx_1 \cdots dx_2 = \int_B f(\phi(t_1,\dots t_n)) \cdot |\det(J_\phi(t_1,\dots t_n))|\ dt_1 \cdots dt_2
+$$
+
+## Partial differential equations
+
+A PDE is a differential equation with multiple changing, variables.
+
+Examples
+
+- First order:
+  - Traffic flow: $u_t + v u_x = f(x,t)$, where $v$ is velocity, $t$ is time and $x$ is a point along the road. The resulting $u(t,x)$ describes the cars at point $x$ and time $t$
+
+- Second order:
+  - Heat equation: $u_tt-c^2 \Delta u=0$
+  - Laplace equaiton: $-\Delta u=0$

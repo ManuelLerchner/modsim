@@ -226,7 +226,25 @@ add_initial_vertex()
 #forward
 while there are vertices left:
     find a vertex where all predecessors are already scheduled
-    schedule this vertex
+    mark this vertex as scheduled
     set its start time as s=max(c of all predecessors)
     set its completion time as c=s+t
+#backward
+while there are vertices left:
+    find a vertex where all successors are already processed
+    mark this vertex as processed
+    set its latest_end_time as l=min(s of all successors)
+    set its latest_start time as latest_s=l-s
+
+#critical path
+critical_path=[]
+for all vertices:
+    if s==latest_s:
+        add vertex to critical path
 ```
+
+### Job Shop Scheduling
+
+- Every Job $A_i$ consists of mutiple subjobs $A_{i1}, A_{i2}, \dots, A_{ik}$.
+  - Each subjob needs a machine $M_j$ to be executed.
+  - No circulation. Every Job requires $M_j$ at most once.

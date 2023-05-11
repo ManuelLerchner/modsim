@@ -46,23 +46,23 @@ $$
 
 - **Certainity**: if you are certain about the initial state, your action will simply be the one that gives you the highest payoff.
   1. **Maximum**
-     - Find Action $i$ as $\argmax_{i}N_{ij}$. In other words, find the action that gives you the highest payoff.
+     - Find Action $i$ as $\arg\max_{i}N_{ij}$. In other words, find the action that gives you the highest payoff.
        - In the example above, if you would somehow know that Player A will cooperate, it is of your best interest to also cooperate. Since this will reduce your sentence from 10 years to 5 years.
 - **Risk**: There are multiple Strategies you can take:
   1. **Caution - (max-min payoff)**
-     - Find Action $i$ as $\argmax_{i} \min_{j} N_{ij}$. In other words, find the action that gives you the highest minimum payoff.
+     - Find Action $i$ as $\arg\max_{i} \min_{j} N_{ij}$. In other words, find the action that gives you the highest minimum payoff.
        - In the example above, Player B would choose to cooperate, since chosing this way, will guarantee him a sentence of maximum 5 years.
 
   2. **Full Risk - (max-max payoff)**
-       - Find Action $i$ as $\argmax_{i} \max_{j} N_{ij}$. In other words, find the action that gives you the highest maximum payoff.
+       - Find Action $i$ as $\arg\max_{i} \max_{j} N_{ij}$. In other words, find the action that gives you the highest maximum payoff.
           - In the example above, Player B would choose to cooperate, since the best case scenario for him is to get a sentence of 0 years in prison, if Player A doesn't cooperate.
 
   3. **Alternative Caution** - (min-max payoff)
-       - Find Action $i$ as $\argmin_{i} \max_{j} R_{ij}$. Where $R_{ij}=\max_i N_{ij} - N_{ij}$.
+       - Find Action $i$ as $\arg\min_{i} \max_{j} R_{ij}$. Where $R_{ij}=\max_i N_{ij} - N_{ij}$.
 
   4. **Pessimism-Optimism**
        - Let $m_i=\min_j N_{ij}$ and $M_i=\max_j N_{ij}$, and $\alpha \in [0,1]$.
-       - Find Action $i$ as $\argmax_{i} (\alpha m_i + (1-\alpha) M_i)$.
+       - Find Action $i$ as $\arg\max_{i} (\alpha m_i + (1-\alpha) M_i)$.
        - This allows you to choose how much risk you want to take. If $\alpha=0$, you will choose the action that gives you the highest maximum payoff. If $\alpha=1$, you will choose the action that gives you the highest minimum payoff.
 
 ## Two-Player Zero-Sum Games
@@ -82,3 +82,4 @@ If you find a state where both players are happy with their payoff, you have fou
 
 $$
 \max_{i} \min_{j} N_{ij} =a_{\hat{i}\hat{j}}= \min_{j} \max_{i} N_{ij}
+$$

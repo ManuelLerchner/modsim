@@ -333,3 +333,141 @@ $$
 $$
 \ddot{y}=f(t,y,\dot{y}),\qquad y(t_0)=y_0, y(t_1)=y_1
 $$
+
+## Fuzzy Logic
+
+Fuzzy logic is used to model feedback system. The goal is to reduce the error between the desired value and the actual value.
+
+![Feedback System](md/images/feedback.png)
+
+### P Controller
+
+A P controller is the simplest controller. It uses the error to calculate the output.
+
+$$
+u(t)=K_p \cdot e(t)
+$$
+
+It just sees the error and does not care about the change of the error or the integral of the error.
+
+### PID Controller
+
+A PID controller is a controller, which uses the error, the change of the error and the integral of the error to calculate the output.
+
+$$
+u(t)=K_p \cdot e(t) + K_i \cdot \int_0^t e(\tau) d\tau + K_d \cdot \frac{de(t)}{dt}
+$$
+
++ The proportional part directly counters the error
++ The integral part counters the error in the long run
++ The differential part reduces the overshoot and oscillation
+
+#### Example Linear Feedback System
+
+The State changes as follows:
+
+$$
+\dot{x}(t)=A \cdot x(t)
+$$
+
+The output with a P controller is:
+
+$$
+\begin{aligned}
+\dot{x}(t)&=A \cdot x(t) + B (-K_p \cdot x(t))\\
+&=(A-B \cdot K_p) \cdot x(t)
+\end{aligned}
+$$
+
+This system can be solved using the Ansatz $x(t)=v e^{\lambda t}$
+
+Categories of the solution:
+
++ All the real parts of the eigenvalues of $(A-B \cdot K_p)$ are negative, the system is stable
++ At least one eigenvalue has a positive real part, the system is unstable, because it has an exponential term
++ All real parts of the eigenvalues are zero, the system is oscillating
++ All real parts of the eigenvalues are negative, and all imaginary parts are zero, the system is stable, and does not oscillate
+
+## Fuzzy Set
+
+A fuzzy set is a set, where the membership is not binary, but a value between 0 and 1.
+
+Example: The set of tall people
+
++ A person with a height of 1.90m is a member of the set with a membership of 1
++ A person with a height of 1.80m is a member of the set with a membership of 0.8
++ A person with a height of 1.20m is a member of the set with a membership of 0.1
+
+## Set Operations
+
+![Fuzzy Logic Operations](md/images/fuzzy_logic_operations.png)
+
+## Structure of a Fuzzy Logic System
+
+1. Fuzzification
+    + Transform the input into fuzzy sets
+    + All Quantitities are transformed into linguistic variables with their membership functions
+
+2. Create Rule Base
+    + The rules are in the form of "IF ... THEN ..."
+    + Example: If the temperature is high, then the fan should be fast
+
+3. Inference
+   + The fuzziness of the input is propagated through the rules
+   + A fuzzy set of actions is created
+
+4. Defuzzification
+   + The fuzzy set of actions is transformed into a crisp value
+   + The crisp value is the output of the fuzzy logic system
+
+## Differential Equations
+
+A partial differential equation is an equation, which contains derivatives of multiple variables.
+
+### Example: Heat Equation
+
+$$
+\frac{\partial u}{\partial t} = \alpha \cdot \left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right)
+$$
+
+### Types Boundary Conditions
+
++ Dirichlet Boundary Conditions
+  + The value of the function is given at the boundary
+  + Example: $y(0)=0, y(1)=1$
+
++ Neumann Boundary Conditions
+  + The derivative of the function is given at the boundary
+  + Example: $y'(0)=0, y'(1)=1$
+
+### Finite Difference Method
+
+In a finite difference method, the derivatives are approximated by finite differences.
+
+The Domain consists of a grid of points. The points are indexed by $i$ and $j$.
+
+The first derivative can be approximated by the central difference:
+
+$$
+\frac{\partial u}{\partial x} \approx \frac{u_{i+1,j}-u_{i-1,j}}{2 \Delta x}
+$$
+
+The second derivative can be approximated by the central difference:
+
+$$
+\frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{\Delta x^2}
+$$
+
+For each grid point, we can formulate the difference equation, points at the boundary are treated differently. (Dirichlet Boundary Conditions...)
+
+## Finite Element Method
+
+In the finite element method, there is no approximation of the derivatives. Instead, the PDE is transformed into a weak formulation.
+
+### Weak Formulation
+
+The weak formulation is obtained by multiplying the PDE with a test function and integrating over the domain.
+
+$$
+\int_\Omega v \cdot \frac{\partial u}{\partial t} d\Omega = \alpha \int_\Omega v \cdot \left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right) d\Omega
+$$

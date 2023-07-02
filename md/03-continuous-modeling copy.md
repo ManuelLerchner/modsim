@@ -471,3 +471,139 @@ The weak formulation is obtained by multiplying the PDE with a test function and
 $$
 \int_\Omega v \cdot \frac{\partial u}{\partial t} d\Omega = \alpha \int_\Omega v \cdot \left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right) d\Omega
 $$
+
+## Iterative Methods
+
+Iterative methods are used to iterately solve linear systems of equations. They are often used, when the matrix is sparse.
+
+The speed of convergence is measured by the spectral radius $\rho(M)$ of the iteration matrix $M$.
+
+It is defined as the largest absolute value of the eigenvalues of $M$.
+
+### Relaxation Methods
+
+Relaxation methods try to reduce the residual of the linear system of equations. By reducing the residual, the error is reduced as well.
+
+$$
+r^{(i)}=b-Ax^{(i)} = Ax-Ax^{(i)} = A(x-x^{(i)}) = -Ae^{(i)}
+$$
+
+All of these equations can be written in matrix form:
+
+$$
+Mx^{(i+1)}+(A-M)x^{(i)}=b
+$$
+
+This can be solved for $x^{(i+1)}$:
+
+$$
+\begin{aligned}
+x^{(i+1)}&=M^{-1}(b-(A-M)x^{(i)})\\
+          &= M^{-1}b - M^{-1}(A-M)x^{(i)}\\
+          &= M^{-1}x^{(i)} - M^{-1}(A-M)x^{(i)}\\
+          &= x^{(i)} - (M^{-1}A - I)x^{(i)}\\
+          &= x^{(i)} - M^{-1}A x^{(i)} + M^{-1}M x^{(i)}\\
+          &= x^{(i)} - M^{-1}(Ax^{(i)} - M x^{(i)})\\
+          &= x^{(i)} - M^{-1}(Ax^{(i)} - b)\\
+          &= x^{(i)} + M^{-1}r^{(i)}
+\end{aligned}
+$$
+
+The error in the next iteration is:
+
+$$
+e^{(i+1)}=x-x^{(i+1)}=x-x^{(i)}-M^{-1}r^{(i)}=e^{(i)}-M^{-1}r^{(i)} = e^{(i)}+M^{-1}Ae^{(i)} = (I-M^{-1}A)e^{(i)}
+$$
+
+The error in the next iteration is the error in the current iteration multiplied by the iteration matrix $I-M^{-1}A$. One can see that the error is reduced, if the spectral radius of the iteration matrix is smaller than 1.
+
+#### Richardson Iteration
+
+The Richardson Iteration is the simplest relaxation method. It is defined as follows:
+
+$$
+x^{(i+1)}=x^{(i)}+ r^{(i)}
+$$
+
+It can be written in matrix form as follows:
+
+$$
+x^{(i+1)}=x^{(i)}+ I^{-1} r^{(i)}
+$$
+
+#### Jacobi Iteration
+
+The Jacobi Iteration uses the diagonal of the matrix $A$ to reduce the residual. It calculates the updated immediately at the beginning of the iteration.
+
+$$
+\begin{aligned}
+y_i^{(i)}&=\frac{1}{a_{ii}} r_i^{(i)} \quad \text{for } i=1,2,...,n\\
+
+x^{(i+1)}&=x^{(i)}+y^{(i)}
+\end{aligned}
+$$
+
+In matrix form:
+
+$$
+x^{(i+1)}=x^{(i)}+D_A^{-1} r^{(i)}
+$$
+
+where $D_A$ is the diagonal of $A$.
+
+#### Gauss-Seidel Iteration
+
+The Gauss-Seidel works similar to the Jacobi Iteration, but it uses the already calculated values of $x$ to calculate the updated values.
+
+$$
+\begin{aligned}
+r &= b-\Sigma_{j=1}^{i-1} a_{ij} x_j^{(i+1)} - \Sigma_{j=i+1}^{n} a_{ij} x_j^{(i)}\\
+y_i^{(i)}&=\frac{1}{a_{ii}} r_i^{(i)} \quad \text{for } i=1,2,...,n\\
+
+x^{(i+1)}&=x^{(i)}+y^{(i)}
+\end{aligned}
+$$
+
+In matrix form:
+
+$$
+x^{(i+1)}=x^{(i)}+(D_A+L_A)^{-1} r^{(i)}
+$$
+
+where $L_A$ is the lower triangular part of $A$.
+
+### Krylov Subspace Methods
+
+#### Conjugate Gradient Method
+
+The Conjugate Gradient Method is an iterative method to solve a linear system of equations $Ax=b$. It uses Gram-Schmidt orthogonalization to find a basis for the Krylov subspace.
+
+Algorithm:
+
+$$
+\begin{aligned}
+p^{(0)} &= r^{(0)} = b-Ax^{(0)}\\
+\\
+\alpha_i &= \frac{r^{(i)T}r^{(i)}}{p^{(i)T}Ap^{(i)}}\\
+x^{(i+1)} &= x^{(i)} + \alpha_i p^{(i)}\\
+r^{(i+1)} &= r^{(i)} - \alpha_i A p^{(i)}\\
+\beta_i &= \frac{r^{(i+1)T}r^{(i+1)}}{r^{(i)T}r^{(i)}}\\
+p^{(i+1)} &= r^{(i+1)} + \beta_i p^{(i)}\\
+\end{aligned}
+$$
+
+### Precoditioning
+
+Typically, the convergence of iterative methods slows down as the grid size increases. This can be improved by using a preconditioner.
+
+A preconditioner is a matrix $M$ that approximates the inverse of $A$. Ideally, $M$ should be $A^{-1}$, but this is not possible in practice as it is slow to compute. The other extreme is $M=I^1$, which is easy to compute, but does not improve the convergence.
+
+Some compromise between these two extremes is needed:
+
++ $M=D_A$ (Jacobi preconditioner)
+
+### Multigrid Methods
+
+In order to avoid the slow convergence of iterative methods, on low frequency errors, multigrid methods can be used. They are based on the idea of solving the error equation $Ae=r$ on a coarser grid. The error is then interpolated back to the original grid.
+
+They are very efficient for calculating Linear Systems of Equations.

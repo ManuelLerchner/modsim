@@ -538,7 +538,6 @@ The Jacobi Iteration uses the diagonal of the matrix $A$ to reduce the residual.
 $$
 \begin{aligned}
 y_i^{(i)}&=\frac{1}{a_{ii}} r_i^{(i)} \quad \text{for } i=1,2,...,n\\
-
 x^{(i+1)}&=x^{(i)}+y^{(i)}
 \end{aligned}
 $$
@@ -559,7 +558,7 @@ $$
 \begin{aligned}
 r &= b-\Sigma_{j=1}^{i-1} a_{ij} x_j^{(i+1)} - \Sigma_{j=i+1}^{n} a_{ij} x_j^{(i)}\\
 y_i^{(i)}&=\frac{1}{a_{ii}} r_i^{(i)} \quad \text{for } i=1,2,...,n\\
-
+\\
 x^{(i+1)}&=x^{(i)}+y^{(i)}
 \end{aligned}
 $$

@@ -42,7 +42,7 @@ If the coefficient of variation $\rho$ is larger than $1$, the expected time tha
 
 ## Queueing Theory
 
-### Definitions
+### Definitions of Queueing Theory
 
 + $FU$ Functional Unit:
   + $SU$ The Service Unit provides the service, does not include transport
@@ -186,3 +186,47 @@ Z_n &= \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \sim N(0, 1)\\
 $$
 
 ## Traffic Flow
+
+We focus on the steady traffic flow, where considering the traffic flow over time is not necessary.
+
+We limit our model to a single lane, where all cars drive at the same speed.
+
+### Definitions of Traffic Flow
+
++ $v$: speed of a car in $m/s$
++ $\rho$: density of cars in $cars/km$
++ $f$: flow of cars in $cars/h$ / throughput
+
+We calculate the distance between two cars as following
+
+$$
+ δ=\frac{l_{road} - \rho \cdot l_{road} \cdot l_{car}}{\rho \cdot l_{road} - 1car} = \frac{1 - \rho \cdot l_{car}}{\rho - \frac{1 car}{l_{road}}}
+$$
+
+Using Little's Law, we can calculate the flow as
+
+$$
+f \left[\frac{cars}{h}\right] = \rho \left[\frac{cars}{km}\right] \cdot v \left[\frac{km}{h}\right]
+$$
+
+The speed also depends on the density of cars. The speed is maximal when the density is minimal and vice versa. Using a linear model, we can calculate the speed as
+
+$$
+v \left[\frac{km}{h}\right] = v_{max} \left[\frac{km}{h}\right] \cdot \left(1 - \frac{\rho}{\rho_{max}}\right)
+$$
+
+With this the flow can be calculated as
+
+$$
+f (\rho) = \rho \cdot v(\rho) = \rho \cdot v_{max} \cdot \left(1 - \frac{\rho}{\rho_{max}}\right)
+$$
+
+This is a parabola with the maximum at $\rho_{max} = \frac{v_{max}}{2}$. We can further refine the model to change the shape of the flow-curve.
+
+The derivative of the flow with repsect to density is called signal-velocity and is defined as
+
+$$
+\frac{\partial f}{\partial \rho}  = f_{\rho} =  v_{max} \cdot \left(1 - \frac{2\rho}{\rho_{max}}\right) \left[\frac{km}{h}  \right ]
+$$
+
+Signal velocity describes the speed at which a signal (e.g. a traffic jam) propagates through the traffic. It is always smaller than the speed of the cars.

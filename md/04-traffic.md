@@ -200,7 +200,7 @@ We limit our model to a single lane, where all cars drive at the same speed.
 We calculate the distance between two cars as following
 
 $$
- δ=\frac{l_{road} - \rho \cdot l_{road} \cdot l_{car}}{\rho \cdot l_{road} - 1car} = \frac{1 - \rho \cdot l_{car}}{\rho - \frac{1 car}{l_{road}}}
+ \delta=\frac{l_{road} - \rho \cdot l_{road} \cdot l_{car}}{\rho \cdot l_{road} - 1car} = \frac{1 - \rho \cdot l_{car}}{\rho - \frac{1 car}{l_{road}}}
 $$
 
 Using Little's Law, we can calculate the flow as
